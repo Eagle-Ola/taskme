@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: containerbase
+  name: containerbase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerbase
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: containerbase
+    spec:
+      containers:
+      - image: bitnami/nginx
+        name: nginx
+        resources: {}
+status: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: containerbase
+  name: containerbase
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: containerbase
+status:
+  loadBalancer: {}
